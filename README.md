@@ -1,6 +1,147 @@
 # Parks_Python_Portfolio
 This is the portfolio of python code that I learned during BISC-450C
 
+## Defensive Programming
+
+```python
+numbers = [1.5, 2.3, 0.7, -0.001, 4.4]
+total = 0.0
+for num in numbers:
+    assert num > 0.0, 'Data should only contain positive values'
+    total += num
+print('total is:', total)
+```
+
+
+    ---------------------------------------------------------------------------
+
+    AssertionError                            Traceback (most recent call last)
+
+    <ipython-input-3-13c7d5640ddd> in <module>
+          2 total = 0.0
+          3 for num in numbers:
+    ----> 4     assert num > 0.0, 'Data should only contain positive values'
+          5     total += num
+          6 print('total is:', total)
+
+
+    AssertionError: Data should only contain positive values
+
+
+
+```python
+def normalize_rectangle(rect):
+    """Normalizes a rectangle so that it is at the origin and 1.0 units long on its longest axis.
+    input should be of the format (x0, y0, x1, y1).
+    (x0, y0) and (x1, y1) define the lower left and upper right corners of the rectangle respectively."""
+    assert len(rect) == 4, 'Rectangles must contain 4 coordinates'
+    x0, y0, x1, y1 = rect
+    assert x0 < x1, 'Invalid x coordinates'
+    assert y0 < y1, 'Invalid y coordinates'
+    
+    dx = x1 - x0 
+    dy = y1 - y0
+    if dx > dy:
+        scaled = dx / dy
+        upper_x, upper_y = 1.0, scaled
+    else:
+        scaled = dx / dy 
+        upper_x, upper_y = scaled, 1.0
+        
+    assert 0 < upper_x <= 1.0, 'Calculated upper X coordinate invalid'
+    assert 0 < upper_y <= 1.0, 'Calculated upper Y coordinate invalid'
+    
+    return (0, 0, upper_x, upper_y)
+
+```
+
+
+```python
+print(normalize_rectangle( (0.0, 1.0, 2.0) ))
+```
+
+
+    ---------------------------------------------------------------------------
+
+    AssertionError                            Traceback (most recent call last)
+
+    <ipython-input-8-f9d109085db1> in <module>
+    ----> 1 print(normalize_rectangle( (0.0, 1.0, 2.0) ))
+    
+
+    <ipython-input-7-dae989f18f74> in normalize_rectangle(rect)
+          3     input should be of the format (x0, y0, x1, y1).
+          4     (x0, y0) and (x1, y1) define the lower left and upper right corners of the rectangle respectively."""
+    ----> 5     assert len(rect) == 4, 'Rectangles must contain 4 coordinates'
+          6     x0, y0, x1, y1 = rect
+          7     assert x0 < x1, 'Invalid x coordinates'
+
+
+    AssertionError: Rectangles must contain 4 coordinates
+
+
+
+```python
+print(normalize_rectangle( (4.0, 2.0, 1.0, 5.0) ))
+```
+
+
+    ---------------------------------------------------------------------------
+
+    AssertionError                            Traceback (most recent call last)
+
+    <ipython-input-9-f7e0d48bdfd0> in <module>
+    ----> 1 print(normalize_rectangle( (4.0, 2.0, 1.0, 5.0) ))
+    
+
+    <ipython-input-7-dae989f18f74> in normalize_rectangle(rect)
+          5     assert len(rect) == 4, 'Rectangles must contain 4 coordinates'
+          6     x0, y0, x1, y1 = rect
+    ----> 7     assert x0 < x1, 'Invalid x coordinates'
+          8     assert y0 < y1, 'Invalid y coordinates'
+          9 
+
+
+    AssertionError: Invalid x coordinates
+
+
+
+```python
+print(normalize_rectangle( (0.0, 0.0, 1.0, 5.0) ))
+```
+
+    (0, 0, 0.2, 1.0)
+
+
+
+```python
+print(normalize_rectangle( (0.0, 0.0, 5.0, 1.0) ))
+```
+
+
+    ---------------------------------------------------------------------------
+
+    AssertionError                            Traceback (most recent call last)
+
+    <ipython-input-11-8d4a48f1d068> in <module>
+    ----> 1 print(normalize_rectangle( (0.0, 0.0, 5.0, 1.0) ))
+    
+
+    <ipython-input-7-dae989f18f74> in normalize_rectangle(rect)
+         18 
+         19     assert 0 < upper_x <= 1.0, 'Calculated upper X coordinate invalid'
+    ---> 20     assert 0 < upper_y <= 1.0, 'Calculated upper Y coordinate invalid'
+         21 
+         22     return (0, 0, upper_x, upper_y)
+
+
+    AssertionError: Calculated upper Y coordinate invalid
+
+
+
+```python
+print(normalize_rectangle( (0.0, 0.0, 5.0, 5.0) ))
+```
 
 
 ## Errors
