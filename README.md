@@ -1,6 +1,11 @@
 # Parks_Python_Portfolio
 This is the portfolio of python code that I learned during BISC-450C
 
+## Command Line Programs
+
+import sys
+print('sys.arv is', sys.argv)
+
 ## Defensive Programming
 
 ```python
